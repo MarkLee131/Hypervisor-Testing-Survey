@@ -1,0 +1,37 @@
+# GitHub Pages configuration for PoC Research Papers
+
+# Theme
+theme: jekyll-theme-cayman
+title: "PoC Research Papers"
+description: "A curated collection of academic research papers on Proof-of-Concept exploits"
+url: "https://marklee131.github.io"
+baseurl: "/Hypervisor-Testing-Survey"
+
+# SEO
+lang: en-US
+author: "Kaixuan Li"
+
+# GitHub metadata
+github:
+  is_project_page: true
+  repository_name: "Hypervisor-Testing-Survey"
+  
+# Enable plugins
+plugins:
+  - jekyll-relative-links
+  - jekyll-seo-tag
+
+# Markdown settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# File handling
+include:
+  - README.md
+
+# Exclude from processing
+exclude:
+  - .gitignore
+  - LICENSE
