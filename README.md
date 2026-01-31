@@ -1,7 +1,7 @@
 # Hypervisor Testing Research Papers
 
 [![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen.svg)]()
-[![License](https://img.shields.io/badge/License-CC--BY--4.0-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-CC--BY--NC--4.0-blue.svg)](LICENSE)
 
 > A systematic collection of research papers on hypervisor testing and fuzzing, including virtual device testing, vCPU emulation, hypercall interfaces, and nested virtualization. This repository accompanies our survey paper "Hypervisor Testing: A Systematic Survey". Feel free to make contributions by creating pull requests.
 
@@ -32,6 +32,13 @@
   - *Target*: KVM, Xen, VirtualBox (Nested Virtualization)
   - *Findings*: 6 vulnerabilities (CVE-2023-30456, CVE-2024-21106)
 
+#### NDSS
+
+- **HyperMirage**: Direct State Manipulation in Hybrid Virtual CPU Fuzzing [[pdf]](https://www.sec.in.tum.de/i20/publications/hypermirage-direct-state-manipulation-in-hybrid-virtual-cpu-fuzzing/@@download/file/ndss26-summer-final1763.pdf)
+  - *Authors*: Andreas et al.
+  - *Target*: Multiple hypervisors (vCPU emulation)
+
+
 ### 2025
 
 #### NDSS
@@ -56,11 +63,6 @@
   - *Authors*: Bulekov et al.
   - *Target*: Multiple hypervisors (universal approach)
 
-#### Preprint
-
-- **HyperMirage**: Direct State Manipulation in Hybrid Virtual CPU Fuzzing
-  - *Authors*: Andreas et al.
-  - *Target*: Multiple hypervisors (vCPU emulation)
 
 ### 2023
 
@@ -399,4 +401,4 @@ Contributions are welcome:
 
 ## License
 
-This documentation is licensed under [CC BY 4.0](LICENSE). Individual papers retain their original copyrights.
+This documentation is licensed under [CC BY-NC 4.0](LICENSE). Individual papers retain their original copyrights.
