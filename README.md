@@ -3,7 +3,8 @@
 [![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen.svg)]()
 [![License](https://img.shields.io/badge/License-CC--BY--NC--4.0-blue.svg)](LICENSE)
 
-> A systematic collection of research papers on hypervisor testing and fuzzing, including virtual device testing, vCPU emulation, hypercall interfaces, and nested virtualization. This repository accompanies our survey paper "Hypervisor Testing: A Systematic Survey". Feel free to make contributions by creating pull requests.
+> A systematic collection of research papers on hypervisor testing and fuzzing, including virtual device testing, vCPU emulation, hypercall interfaces, and nested virtualization. This repository accompanies our survey paper "Hypervisor Testing: Techniques, Challenges, and Future
+Directions". Feel free to make contributions by creating pull requests.
 
 ---
 
