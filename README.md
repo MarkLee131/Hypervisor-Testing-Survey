@@ -5,6 +5,28 @@
 
 > A systematic collection of research papers on hypervisor testing and fuzzing, including virtual device testing, vCPU emulation, hypercall interfaces, and nested virtualization. This repository accompanies our survey paper "Hypervisor Testing: A Systematic Survey". Feel free to make contributions by creating pull requests.
 
+---
+
+## Paper Collection Methodology
+
+We followed a rigorous literature review protocol adapted from [Kitchenham's guidelines](https://www.elsevier.com/__data/promis_misc/525444systematicreviewsguide.pdf):
+
+**Database Search**: ACM Digital Library, IEEE Xplore, USENIX, DBLP, Semantic Scholar
+
+**Search Query**:
+```
+("Hypervisor" OR "VMM" OR "QEMU" OR "KVM" OR "Xen" OR "Hyper-V" OR "VirtualBox" OR "Virtual Device")
+AND ("Fuzzing" OR "Fuzz Testing" OR "Security Testing" OR "Vulnerability Detection" OR "Symbolic Execution")
+```
+
+**Venue Filter**: Top-tier security (S&P, USENIX Security, CCS, NDSS), systems (OSDI, SOSP, EuroSys, ATC), and software engineering (ICSE, FSE, ASE) conferences.
+
+**Snowballing**: Backward (references) and forward (Google Scholar citations) until saturation.
+
+**Tool Collection**: GitHub search with star ranking and activity filtering.
+
+---
+
 ## Contents
 
 ### By Year

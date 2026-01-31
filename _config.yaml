@@ -1,9 +1,9 @@
-# GitHub Pages configuration for PoC Research Papers
+# GitHub Pages configuration for Hypervisor Testing Survey
 
 # Theme
 theme: jekyll-theme-cayman
-title: "PoC Research Papers"
-description: "A curated collection of academic research papers on Proof-of-Concept exploits"
+title: "Hypervisor Testing Research Papers"
+description: "A systematic collection of research papers on hypervisor testing and fuzzing"
 url: "https://marklee131.github.io"
 baseurl: "/Hypervisor-Testing-Survey"
 
@@ -11,10 +11,12 @@ baseurl: "/Hypervisor-Testing-Survey"
 lang: en-US
 author: "Kaixuan Li"
 
-# GitHub metadata
+# GitHub metadata - override owner_name to display real name
 github:
   is_project_page: true
   repository_name: "Hypervisor-Testing-Survey"
+  owner_name: "Kaixuan Li"
+  owner_url: "https://github.com/MarkLee131"
   
 # Enable plugins
 plugins:
