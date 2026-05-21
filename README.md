@@ -366,13 +366,11 @@ All counts below are taken from the abstract/introduction of each paper. Where t
 - **AFL**: American Fuzzy Lop - Core mutation strategies used by many tools
 - **Intel PT**: Hardware tracing used for coverage feedback
 
-### Companion Repositories
+### Miscellaneous
 
-These repos overlap in topic but do not strictly target hypervisor testing/fuzzing research. They are useful as background reading.
-
-- [husseinmuhaisen/Hypervisor](https://github.com/husseinmuhaisen/Hypervisor) - Broad virtualization resource list (hypervisor-development tutorials, internals, exploitation writeups, blog posts). Out of scope for this survey, but a good general entry point to virtualization security.
-- [Wenzel/awesome-virtualization](https://github.com/Wenzel/awesome-virtualization) - Curated virtualization resources.
-- [shogunlab/awesome-hyper-v-exploitation](https://github.com/shogunlab/awesome-hyper-v-exploitation) - Hyper-V exploitation-focused links.
+- [husseinmuhaisen/Hypervisor](https://github.com/husseinmuhaisen/Hypervisor)
+- [Wenzel/awesome-virtualization](https://github.com/Wenzel/awesome-virtualization)
+- [shogunlab/awesome-hyper-v-exploitation](https://github.com/shogunlab/awesome-hyper-v-exploitation)
 
 ---
 
