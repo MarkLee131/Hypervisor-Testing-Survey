@@ -40,7 +40,7 @@ AND ("Fuzzing" OR "Fuzz Testing" OR "Security Testing" OR "Vulnerability Detecti
 
 ### By Technique
 
-[Coverage-Guided Fuzzing](#coverage-guided-fuzzing) | [Grammar and Dependency-Aware Fuzzing](#grammar-and-dependency-aware-fuzzing) | [DMA-Centric Approaches](#dma-centric-approaches) | [Hybrid Fuzzing with Symbolic Execution](#hybrid-fuzzing-with-symbolic-execution) | [Trace-Based and Replay Approaches](#trace-based-and-replay-approaches) | [Universal and Black-Box Approaches](#universal-and-black-box-approaches)
+[Coverage-Guided Fuzzing](#coverage-guided-fuzzing) | [Grammar and Dependency-Aware Fuzzing](#grammar-and-dependency-aware-fuzzing) | [DMA-Centric Approaches](#dma-centric-approaches) | [Hybrid Fuzzing with Symbolic Execution](#hybrid-fuzzing-with-symbolic-execution) | [Trace-Based and Replay Approaches](#trace-based-and-replay-approaches) | [Universal and Black-Box Approaches](#universal-and-black-box-approaches) | [Fault Injection and Robustness Assessment](#fault-injection-and-robustness-assessment)
 
 ---
 
@@ -50,16 +50,17 @@ AND ("Fuzzing" OR "Fuzz Testing" OR "Security Testing" OR "Vulnerability Detecti
 
 #### EuroSys
 
-- **NecoFuzz**: Effective Fuzzing of Nested Virtualization via Fuzz-Harness Virtual Machines
-  - *Authors*: Ishii et al. (University of Tokyo)
+- **NecoFuzz**: Effective Fuzzing of Nested Virtualization via Fuzz-Harness Virtual Machines [[pdf]](https://arxiv.org/pdf/2512.08858)
+  - *Authors*: Ishii, Fukai, Shinagawa (University of Tokyo; Fukai at AIST)
   - *Target*: KVM, Xen, VirtualBox (Nested Virtualization)
-  - *Findings*: 6 vulnerabilities (CVE-2023-30456, CVE-2024-21106)
+  - *Findings*: 6 vulnerabilities, all confirmed by maintainers; 2 CVEs (CVE-2023-30456, CVE-2024-21106)
 
 #### NDSS
 
 - **HyperMirage**: Direct State Manipulation in Hybrid Virtual CPU Fuzzing [[pdf]](https://www.sec.in.tum.de/i20/publications/hypermirage-direct-state-manipulation-in-hybrid-virtual-cpu-fuzzing/@@download/file/ndss26-summer-final1763.pdf)
-  - *Authors*: Andreas et al.
-  - *Target*: Multiple hypervisors (vCPU emulation)
+  - *Authors*: Andreas, Specht, Momeu (Technical University of Munich)
+  - *Target*: Xen and KVM (vCPU emulation, Intel x86)
+  - *Findings*: 11 new bugs (9 Xen, 2 KVM), all confirmed by maintainers; CVE assignment per paper PDF (e.g., CVE-2023-46842 mentioned by secondary sources, awaiting primary-source confirmation)
 
 
 ### 2025
@@ -78,13 +79,23 @@ AND ("Fuzzing" OR "Fuzz Testing" OR "Security Testing" OR "Vulnerability Detecti
   - *Target*: QEMU
   - *Findings*: 2 new vulnerabilities, 1 CVE
 
+#### TDSC (IEEE Transactions on Dependable and Secure Computing)
+
+- **COSMOS**: A Fault Injection Framework to Assess Hardware-Assisted Hypervisors [[pdf]](https://ieeexplore.ieee.org/document/11121437/)
+  - *Authors*: Cinque et al. (Federico II University of Naples)
+  - *Target*: KVM, Xen, Jailhouse (hardware-assisted hypervisors via nested virtualization)
+  - *Technique*: Fault injection, no target instrumentation required
+  - *Findings*: Non-negligible non-fail-stop behaviors; notable differences across hypervisors in failure logging and recovery
+  - *GitHub*: https://github.com/dessertlab/Cosmos
+
 ### 2024
 
 #### USENIX Security
 
 - **HYPERPILL**: Fuzzing for Hypervisor-bugs by Leveraging the Hardware Virtualization Interface [[pdf]](https://www.usenix.org/system/files/usenixsecurity24-bulekov.pdf)
-  - *Authors*: Bulekov et al.
-  - *Target*: Multiple hypervisors (universal approach)
+  - *Authors*: Bulekov, Liu, Egele, Payer (EPFL, Boston University, Zhejiang University)
+  - *Target*: QEMU/KVM, Microsoft Hyper-V, macOS Virtualization Framework (universal approach via hardware virtualization interface)
+  - *Findings*: 26 new bugs (11 in QEMU), 9 CVEs
 
 
 ### 2023
@@ -92,16 +103,16 @@ AND ("Fuzzing" OR "Fuzz Testing" OR "Security Testing" OR "Vulnerability Detecti
 #### S&P (IEEE Symposium on Security and Privacy)
 
 - **ViDeZZo**: Dependency-aware Virtual Device Fuzzing [[pdf]](https://ieeexplore.ieee.org/document/10179354/)
-  - *Authors*: Liu et al.
+  - *Authors*: Qiang Liu et al. (Zhejiang University, EPFL HexHive)
   - *Target*: QEMU, VirtualBox (28 virtual devices across 4 architectures)
-  - *Findings*: 24 existing + 28 new bugs, 7 patches accepted
+  - *Findings*: 28 new bugs, 7 patches accepted upstream, 1 CVE assigned at publication (24 prior bugs reproduced as comparison baselines, not counted as new discoveries)
 
 #### ASE
 
 - **VD-Guard**: DMA Guided Fuzzing for Hypervisor Virtual Device [[pdf]](https://ieeexplore.ieee.org/document/10298337/)
-  - *Authors*: Liu et al.
+  - *Authors*: Yuwei Liu et al. (Institute of Software CAS, SJTU; distinct from ViDeZZo's lead author)
   - *Target*: QEMU, VirtualBox
-  - *Findings*: 4 new vulnerabilities, 3 CVEs
+  - *Findings*: 4 new vulnerabilities, all confirmed and fixed, 3 CVEs
 
 #### DSN
 
@@ -115,12 +126,14 @@ AND ("Fuzzing" OR "Fuzz Testing" OR "Security Testing" OR "Vulnerability Detecti
 #### USENIX Security
 
 - **Morphuzz**: Bending (Input) Space to Fuzz Virtual Devices [[pdf]](https://www.usenix.org/system/files/sec22-bulekov.pdf)
-  - *Authors*: Bulekov et al.
-  - *Target*: QEMU
+  - *Authors*: Bulekov et al. (Boston University, Red Hat)
+  - *Target*: QEMU, bhyve
+  - *Findings*: 66 new bugs (61 QEMU + 5 bhyve), 22 fixes accepted, 9 CVEs
 
 - **MundoFuzz**: Hypervisor Fuzzing with Statistical Coverage Testing and Grammar Inference [[pdf]](https://www.usenix.org/system/files/sec22-myung.pdf)
-  - *Authors*: Myung et al.
-  - *Target*: Multiple hypervisors
+  - *Authors*: Myung et al. (Seoul National University)
+  - *Target*: QEMU, bhyve
+  - *Findings*: 40 previously unknown bugs (23 QEMU + 17 bhyve), 9 CVEs
 
 #### EuroSys
 
@@ -134,8 +147,9 @@ AND ("Fuzzing" OR "Fuzz Testing" OR "Security Testing" OR "Vulnerability Detecti
 #### USENIX Security
 
 - **Nyx**: Greybox Hypervisor Fuzzing using Fast Snapshots and Affine Types [[pdf]](https://www.usenix.org/system/files/sec21-schumilo.pdf)
-  - *Authors*: Schumilo et al.
+  - *Authors*: Schumilo et al. (Ruhr-Universität Bochum)
   - *Target*: QEMU/KVM, bhyve
+  - *Findings*: 44 new bugs, 22 CVEs requested
 
 #### CCS
 
@@ -145,9 +159,9 @@ AND ("Fuzzing" OR "Fuzz Testing" OR "Security Testing" OR "Vulnerability Detecti
   - *Findings*: 35 new bugs, 17 CVEs
 
 - **HyperFuzzer**: An Efficient Hybrid Fuzzer for Virtual CPUs [[pdf]](https://dl.acm.org/doi/10.1145/3460120.3484748)
-  - *Authors*: Ge et al. (Microsoft Research)
+  - *Authors*: Ge et al. (Microsoft Research, Microsoft, Penn State, Facebook, KAIST)
   - *Target*: Microsoft Hyper-V (vCPU emulation)
-  - *Findings*: 11 previously unknown bugs
+  - *Findings*: 11 previously unknown bugs, all confirmed and fixed (6 security-critical)
 
 #### Black Hat USA
 
@@ -155,14 +169,24 @@ AND ("Fuzzing" OR "Fuzz Testing" OR "Security Testing" OR "Vulnerability Detecti
   - *Authors*: Harpaz & Hadar (Guardicore, SafeBreach)
   - *Target*: Microsoft Hyper-V (vmswitch.sys)
   - *Findings*: CVE-2021-28476 (CVSS 9.9)
+  - *Follow-on tooling*: [hAFL2](https://github.com/SafeBreach-Labs/hAFL2), the open-sourced, nested-VM-capable kAFL-based Hyper-V VSP fuzzer released alongside the talk
+
+#### SSTIC
+
+- **Hyntrospect**: A Coverage-Guided Fuzzer for Hyper-V Emulated Devices [[paper]](https://www.sstic.org/media/SSTIC2021/SSTIC-actes/hyntrospect_a_fuzzer_for_hyper-v_devices/SSTIC2021-Article-hyntrospect_a_fuzzer_for_hyper-v_devices-dubois.pdf) [[slides]](https://www.sstic.org/media/SSTIC2021/SSTIC-actes/hyntrospect_a_fuzzer_for_hyper-v_devices/SSTIC2021-Slides-hyntrospect_a_fuzzer_for_hyper-v_devices-dubois.pdf)
+  - *Authors*: Dubois (Google; work performed in collaboration with the Project Zero team, per the SSTIC paper). Also presented at BlueHat IL 2022.
+  - *Target*: Microsoft Hyper-V emulated devices in the root-partition userland (port I/O guest interface)
+  - *Technique*: Coverage-guided fuzzing of closed-source binaries, Hyper-V checkpoints for per-input state reset
+  - *Findings*: No security vulnerabilities reported in the SSTIC 2021 campaign (one non-security guest-VM crash in i8042 reported to MSRC)
+  - *GitHub*: https://github.com/googleprojectzero/Hyntrospect
 
 ### 2020
 
 #### NDSS
 
 - **HYPER-CUBE**: High-Dimensional Hypervisor Fuzzing [[pdf]](https://www.ndss-symposium.org/wp-content/uploads/2020/02/23096.pdf)
-  - *Authors*: Schumilo et al.
-  - *Target*: QEMU, VirtualBox, ACRN, bhyve, VMware Fusion
+  - *Authors*: Schumilo et al. (Ruhr-Universität Bochum)
+  - *Target*: Six hypervisors — QEMU/KVM, VirtualBox, VMware Fusion, Intel ACRN, bhyve, Parallels
   - *Findings*: 54 novel bugs, 43 CVEs
 
 ### 2017
@@ -185,6 +209,7 @@ Virtual devices are the primary attack surface of hypervisors, exposing interfac
 - **Nyx**: Greybox Hypervisor Fuzzing using Fast Snapshots and Affine Types (USENIX Security '21) [[pdf]](https://www.usenix.org/system/files/sec21-schumilo.pdf)
 - **V-Shuttle**: Scalable and Semantics-Aware Hypervisor Virtual Device Fuzzing (CCS '21) [[pdf]](https://dl.acm.org/doi/10.1145/3460120.3484811)
 - **hAFL1**: Our Journey of Fuzzing Hyper-V and Discovering a Critical 0-Day (Black Hat USA '21)
+- **Hyntrospect**: A Coverage-Guided Fuzzer for Hyper-V Emulated Devices (SSTIC '21) [[paper]](https://www.sstic.org/media/SSTIC2021/SSTIC-actes/hyntrospect_a_fuzzer_for_hyper-v_devices/SSTIC2021-Article-hyntrospect_a_fuzzer_for_hyper-v_devices-dubois.pdf)
 - **Morphuzz**: Bending (Input) Space to Fuzz Virtual Devices (USENIX Security '22) [[pdf]](https://www.usenix.org/system/files/sec22-bulekov.pdf)
 - **ViDeZZo**: Dependency-aware Virtual Device Fuzzing (S&P '23) [[pdf]](https://ieeexplore.ieee.org/document/10179354/)
 - **VD-Guard**: DMA Guided Fuzzing for Hypervisor Virtual Device (ASE '23) [[pdf]](https://ieeexplore.ieee.org/document/10298337/)
@@ -225,6 +250,8 @@ Approaches that use code coverage feedback to guide input generation and explore
 - **Nyx**: Greybox Hypervisor Fuzzing using Fast Snapshots and Affine Types (USENIX Security '21) [[pdf]](https://www.usenix.org/system/files/sec21-schumilo.pdf)
 - **Nyx-Net**: Network Fuzzing with Incremental Snapshots (EuroSys '22) [[pdf]](https://dl.acm.org/doi/10.1145/3492321.3519591)
 - **MundoFuzz**: Hypervisor Fuzzing with Statistical Coverage Testing and Grammar Inference (USENIX Security '22) [[pdf]](https://www.usenix.org/system/files/sec22-myung.pdf)
+- **Hyntrospect**: A Coverage-Guided Fuzzer for Hyper-V Emulated Devices (SSTIC '21) [[paper]](https://www.sstic.org/media/SSTIC2021/SSTIC-actes/hyntrospect_a_fuzzer_for_hyper-v_devices/SSTIC2021-Article-hyntrospect_a_fuzzer_for_hyper-v_devices-dubois.pdf)
+- **hAFL1**: Our Journey of Fuzzing Hyper-V and Discovering a Critical 0-Day (Black Hat USA '21) - kAFL-based coverage-guided fuzzer for Hyper-V VSPs
 
 ### Grammar and Dependency-Aware Fuzzing
 
@@ -234,7 +261,7 @@ Approaches that leverage protocol specifications, message dependencies, or devic
 - **ViDeZZo**: Dependency-aware Virtual Device Fuzzing (S&P '23) [[pdf]](https://ieeexplore.ieee.org/document/10179354/)
 - **MundoFuzz**: Hypervisor Fuzzing with Statistical Coverage Testing and Grammar Inference (USENIX Security '22) [[pdf]](https://www.usenix.org/system/files/sec22-myung.pdf)
 - **Truman**: Constructing Device Behavior Models from OS Drivers to Fuzz Virtual Devices (NDSS '25) [[pdf]](https://www.ndss-symposium.org/wp-content/uploads/2025-301-paper.pdf)
-- **hAFL1**: Our Journey of Fuzzing Hyper-V and Discovering a Critical 0-Day (Black Hat USA '21)
+
 ### DMA-Centric Approaches
 
 Approaches that specifically target DMA (Direct Memory Access) handling in virtual devices.
@@ -263,6 +290,14 @@ Approaches designed to work across multiple hypervisors without requiring source
 
 - **HYPERPILL**: Fuzzing for Hypervisor-bugs by Leveraging the Hardware Virtualization Interface (USENIX Security '24) [[pdf]](https://www.usenix.org/system/files/usenixsecurity24-bulekov.pdf)
 - **NecoFuzz**: Effective Fuzzing of Nested Virtualization via Fuzz-Harness Virtual Machines (EuroSys '26)[[pdf]](https://arxiv.org/pdf/2512.08858)
+- **COSMOS**: A Fault Injection Framework to Assess Hardware-Assisted Hypervisors (TDSC '25) [[pdf]](https://ieeexplore.ieee.org/document/11121437/)
+
+### Fault Injection and Robustness Assessment
+
+Approaches that inject faults (transient hardware faults, error conditions) into the hypervisor to assess robustness, fail-stop behavior, error logging, and recovery.
+
+- **COSMOS**: A Fault Injection Framework to Assess Hardware-Assisted Hypervisors (TDSC '25) [[pdf]](https://ieeexplore.ieee.org/document/11121437/)
+  - Uses nested virtualization to inject faults into KVM, Xen, and Jailhouse without target instrumentation
 
 ---
 
@@ -270,30 +305,39 @@ Approaches designed to work across multiple hypervisors without requiring source
 
 | Hypervisor | Papers |
 |------------|--------|
-| **QEMU/KVM** | HYPER-CUBE, Nyx, Morphuzz, V-Shuttle, ViDeZZo, VD-Guard, Truman, InSVDF, VDF, NecoFuzz |
+| **QEMU/KVM** | HYPER-CUBE, Nyx, Morphuzz, MundoFuzz, V-Shuttle, ViDeZZo, VD-Guard, HYPERPILL, Truman, InSVDF, VDF, NecoFuzz, HyperMirage, COSMOS |
 | **VirtualBox** | HYPER-CUBE, V-Shuttle, ViDeZZo, VD-Guard, Truman, NecoFuzz |
-| **Hyper-V** | HyperFuzzer, hAFL1 |
-| **Xen** | IRIS, NecoFuzz |
+| **Hyper-V** | HyperFuzzer, hAFL1, Hyntrospect, HYPERPILL |
+| **Xen** | IRIS, NecoFuzz, HyperMirage, COSMOS |
 | **VMware** | HYPER-CUBE (Fusion), Truman (Workstation Pro) |
-| **bhyve** | HYPER-CUBE, Nyx |
+| **macOS Virtualization Framework** | HYPERPILL |
+| **bhyve** | HYPER-CUBE, Nyx, Morphuzz, MundoFuzz |
 | **ACRN** | HYPER-CUBE |
-| **Parallels** | Truman |
+| **Parallels** | HYPER-CUBE, Truman |
+| **Jailhouse** | COSMOS |
 
 ---
 
 ## Bug Discovery Statistics
 
+All counts below are taken from the abstract/introduction of each paper. Where the paper distinguishes "patches accepted" from "CVEs assigned", we report both; CVE assignment often lags publication. Hyntrospect is omitted because its SSTIC 2021 campaign reported no security findings.
+
 | Tool | Venue | New Bugs | CVEs |
 |------|-------|----------|------|
 | HYPER-CUBE | NDSS '20 | 54 | 43 |
+| Nyx | USENIX Sec. '21 | 44 | 22 requested |
 | V-Shuttle | CCS '21 | 35 | 17 |
-| HyperFuzzer | CCS '21 | 11 | - |
-| hAFL1 | Black Hat '21 | 1 | 1 (CVSS 9.9) |
-| ViDeZZo | S&P '23 | 52 | 7+ |
+| HyperFuzzer | CCS '21 | 11 (6 security-critical) | not disclosed |
+| hAFL1 | Black Hat '21 | 1 | 1 (CVE-2021-28476, CVSS 9.9) |
+| Morphuzz | USENIX Sec. '22 | 66 (61 QEMU + 5 bhyve) | 9 (22 fixes accepted) |
+| MundoFuzz | USENIX Sec. '22 | 40 (23 QEMU + 17 bhyve) | 9 |
+| ViDeZZo | S&P '23 | 28 | 7 patches accepted; 1 CVE at publication |
 | VD-Guard | ASE '23 | 4 | 3 |
+| HYPERPILL | USENIX Sec. '24 | 26 (11 QEMU + others in Hyper-V, macOS VF) | 9 |
 | Truman | NDSS '25 | 54 | 6 |
 | InSVDF | ICSE '25 | 2 | 1 |
-| NecoFuzz | EuroSys '26 | 6 | 2 |
+| HyperMirage | NDSS '26 | 11 (9 Xen + 2 KVM) | confirmed by maintainers; specific CVE IDs to be verified from full PDF |
+| NecoFuzz | EuroSys '26 | 6 | 2 (CVE-2023-30456, CVE-2024-21106) |
 
 ---
 
@@ -308,6 +352,9 @@ Approaches designed to work across multiple hypervisors without requiring source
 | ViDeZZo | [HexHive/ViDeZZo](https://github.com/HexHive/ViDeZZo) | Available |
 | IRIS | [dessertlab/iris](https://github.com/dessertlab/iris) | Available |
 | Truman | [truman](https://github.com/vul337/Truman) | Available |
+| COSMOS | [dessertlab/Cosmos](https://github.com/dessertlab/Cosmos) | Available |
+| Hyntrospect | [googleprojectzero/Hyntrospect](https://github.com/googleprojectzero/Hyntrospect) | Available |
+| hAFL2 | [SafeBreach-Labs/hAFL2](https://github.com/SafeBreach-Labs/hAFL2) | Available |
 
 ---
 
@@ -319,6 +366,13 @@ Approaches designed to work across multiple hypervisors without requiring source
 - **AFL**: American Fuzzy Lop - Core mutation strategies used by many tools
 - **Intel PT**: Hardware tracing used for coverage feedback
 
+### Companion Repositories
+
+These repos overlap in topic but do not strictly target hypervisor testing/fuzzing research. They are useful as background reading.
+
+- [husseinmuhaisen/Hypervisor](https://github.com/husseinmuhaisen/Hypervisor) - Broad virtualization resource list (hypervisor-development tutorials, internals, exploitation writeups, blog posts). Out of scope for this survey, but a good general entry point to virtualization security.
+- [Wenzel/awesome-virtualization](https://github.com/Wenzel/awesome-virtualization) - Curated virtualization resources.
+- [shogunlab/awesome-hyper-v-exploitation](https://github.com/shogunlab/awesome-hyper-v-exploitation) - Hyper-V exploitation-focused links.
 
 ---
 
@@ -377,27 +431,33 @@ Four fundamental trade-offs govern hypervisor testing tool design:
 
 ### Research Gaps by Attack Surface
 
+Papers are counted by their primary attack-surface target as listed in [Papers by Testing Target](#papers-by-testing-target). A paper that crosses targets (e.g., HYPER-CUBE, HYPERPILL) is counted under its primary contribution.
+
 | Attack Surface | Papers | Gap Analysis |
 |----------------|--------|--------------|
-| Virtual Devices | 12 (71%) | Well-studied but complex protocols (NVMe, virtio-gpu) underexplored |
-| vCPU Emulation | 2 (12%) | **Severely underexplored** - extension instruction sets (AVX-512, SGX) untested |
-| Hypercalls/VM-Exit | 2 (12%) | **Severely underexplored** - systematic hypercall sequence testing missing |
-| Core Subsystems | 0 (0%) | **Completely unexplored** - MMU virtualization, scheduling, IOMMU |
+| Virtual Devices | 11/18 (61%) | Well-studied for legacy/MMIO devices; complex stateful protocols (NVMe, virtio-gpu, virtio-net offloads) remain underexplored |
+| vCPU Emulation | 2/18 (11%) | **Severely underexplored** - extension instruction sets (AVX-512, SGX/TDX, AMX) untested |
+| Hypercalls/VM-Exit | 2/18 (11%) | **Severely underexplored** - systematic hypercall sequence and VM-exit handler testing missing |
+| Nested Virtualization | 2/18 (11%) | Emerging area; VMCS shadowing, nested EPT, and L2->L0 escape paths under-tested |
+| Fault Injection / Robustness | 1/18 (6%) | Almost unexplored; only COSMOS targets non-fail-stop behavior and recovery |
+| Core Subsystems (MMU, scheduler, IOMMU, IPC) | 0/18 (0%) | **No dedicated study**; touched only as side effects of other fuzzers |
 
 ---
 
 ## Evaluation Guidelines
 
-### Common Pitfalls (from our survey analysis)
+### Common Pitfalls
 
-| Pitfall | Prevalence | Recommendation |
-|---------|------------|----------------|
-| Throughput without coverage context | 41% | Report effective coverage rate alongside throughput |
-| Device count without complexity classification | 53% | Classify devices by complexity (simple/medium/complex) |
-| CVE count without severity/deduplication | 65% | Report bugs with root cause and CVSS severity |
-| Snapshot configuration details omitted | 47% | Specify guest memory, timing, enabled devices |
-| Non-standardized time budgets | 59% | Use 1h for quick comparison, 24h for thorough evaluation |
-| Missing or inadequate baselines | 35% | Compare against at least one prior tool |
+Reporting weaknesses we observed while extracting comparable evaluation data across the surveyed papers. The exact frequencies are not given here because the per-paper coding is methodologically subjective (e.g., what counts as "missing" baseline); the issues themselves recur frequently enough to warrant explicit guidance.
+
+| Pitfall | Recommendation |
+|---------|----------------|
+| Throughput reported without coverage context | Report effective coverage rate (edges/sec or new-edges/sec) alongside raw exec/sec |
+| Device count reported without complexity classification | Classify devices by complexity (simple/medium/complex), e.g., MMIO-only vs. DMA+state-machine |
+| CVE count reported without severity or deduplication policy | Report bugs with root cause and CVSS severity; state how duplicates were detected |
+| Snapshot configuration details omitted | Specify guest memory size, snapshot timing, enabled devices |
+| Non-standardized time budgets | Provide at least two budgets (e.g., 1h and 24h) to allow comparison |
+| Missing or inadequate baselines | Compare against at least one prior tool on the same target and budget |
 
 ### Recommended Reporting Checklist
 
